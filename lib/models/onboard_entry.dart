@@ -11,6 +11,6 @@ class OnboardEntry {
   static List<OnboardEntry> defaultEntries = [
     OnboardEntry(Assets.images.manageTask.image(), "Manage you tasks", "You can easily manage all of your daily tasks in DoMe for free"),
     OnboardEntry(Assets.images.dailyRoutine.image(), "Create daily routine", "In Uptodo  you can create your personalized routine to stay productive"),
-    OnboardEntry(Assets.images.organizeTask.image(), "Orgonaize your tasks", "You can organize your daily tasks by adding your tasks into separate categories"),
+    OnboardEntry(Assets.images.organizeTask.image(), "Organize your tasks", "You can organize your daily tasks by adding your tasks into separate categories"),
   ];
 }

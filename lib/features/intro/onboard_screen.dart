@@ -50,32 +50,35 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 Spacer(),
               ],
             ),
-            Center(
-              child: SizedBox(
-                width: 200,
-                height: 200,
-                child: _entries[_currentIndex].displayImage,
+            Expanded(
+              flex: 1,
+              child: Center(
+                
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: _entries[_currentIndex].displayImage,
+                ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(30),
+              padding: EdgeInsets.all(10),
               child: SizedBox(
                 height: 3,
                 child: Row(
                   children: [
                     Spacer(),
                     Container(
-                      width: 20,
+                      width: 16,
                       color: _currentIndex == 0 ? Colors.white : Colors.white60,
                     ),
-                    SizedBox(width: 5),
+                    SizedBox(width: 10),
                     Container(
-                      width: 20,
+                      width: 16,
                       color: _currentIndex == 1 ? Colors.white : Colors.white60,
                     ),
-                    SizedBox(width: 5),
+                    SizedBox(width: 10),
                     Container(
-                      width: 20,
+                      width: 16,
                       color: _currentIndex == 2 ? Colors.white : Colors.white60,
                     ),
                     Spacer(),
@@ -83,15 +86,22 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child:  Text(_entries[_currentIndex].title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.white),),
+            Expanded(
+                flex: 1,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(20),
+                      child:  Text(_entries[_currentIndex].title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.white),),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(60, 20, 60, 20),
+                      child:  Text(_entries[_currentIndex].description, style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.white70,), textAlign: TextAlign.center,),
+                    ),
+                    Spacer(),
+                  ],
+                ),
             ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(60, 20, 60, 20),
-              child:  Text(_entries[_currentIndex].description, style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.white70,), textAlign: TextAlign.center,),
-            ),
-            Spacer(),
             Row(
               children: [
                 TextButton(
@@ -110,7 +120,6 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   ),
                   onPressed: () {
                     showNext();
-                    print("$_currentIndex");
                   },
                   child: const Text('NEXT'),
                 ),
