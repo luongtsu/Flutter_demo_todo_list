@@ -1,5 +1,7 @@
+import 'package:flutter_login_homwork3/gen/assets.gen.dart';
+
 class UserProfile {
-  String avatarImageName = "assets/images/whitehair.png";
+  String avatarImageName = Assets.images.whitehair.path;
   String userName = "john@gmail.com";
   String password = "123456";
   String nickName = "Nickname";
