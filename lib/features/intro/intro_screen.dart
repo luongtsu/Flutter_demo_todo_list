@@ -1,15 +1,19 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_homwork3/features/intro/onboard_screen.dart';
 import 'package:flutter_login_homwork3/gen/assets.gen.dart';
 
-class IntroPage extends StatelessWidget {
-  const IntroPage({Key? key}) : super(key: key);
+class IntroScreen extends StatelessWidget {
+  const IntroScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // TODO: goto next screen
+        Navigator.push(context, MaterialPageRoute<void>(
+            builder: (BuildContext context) {
+              return const OnboardScreen();
+            }),
+        );
       },
       child: Container(
         width: double.infinity,
@@ -24,7 +28,7 @@ class IntroPage extends StatelessWidget {
                 height: 100,
                 child: Assets.images.todoIcon.image(),
               ),
-              Text("UpTodo", style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600, color: Colors.white),),
+              const Text("UpTodo", style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600, color: Colors.white),),
             ],
           ) ,
         ),

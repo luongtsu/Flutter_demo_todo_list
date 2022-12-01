@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_homwork3/models/onboard_entry.dart';
+import 'package:flutter_login_homwork3/ui_components/no_task.dart';
+import 'package:flutter_login_homwork3/ui_components/tabbar_item.dart';
 import 'package:flutter_login_homwork3/utils/constant.dart';
 import 'package:flutter_login_homwork3/gen/assets.gen.dart';
 
@@ -13,33 +14,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   int _selectedIndex = 0;
-  static const TextStyle optionStyle = TextStyle(
-    fontSize: 30,
-    fontWeight: FontWeight.bold
-  );
-
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -50,16 +24,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: SizedBox(
           width: double.infinity,
           child: Text('Index', textAlign: TextAlign.center,),
         ),
-        leading: IconButton(
-          onPressed: () {
-            // TODO: do smthing
-          },
-          icon: Icon(Icons.sort),
+        leading:Padding(
+          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+          child: IconButton(
+            onPressed: () {
+              // TODO: do smthing
+            },
+            icon: Icon(Icons.sort),
+          ),
         ),
         actions: [
           GestureDetector(
@@ -85,11 +64,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          SizedBox(width: 10,),
+          SizedBox(width: 20,),
         ],
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: Container(
+        color: Colors.black,
+        child: NoTask(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -103,21 +83,34 @@ class _HomeScreenState extends State<HomeScreen> {
       //floating action button position to center
 
       bottomNavigationBar: BottomAppBar( //bottom navigation bar on scaffold
-        color:Colors.grey,
+        color:Constant.barBackground,
         shape: CircularNotchedRectangle(), //shape of notch
         notchMargin: 0, //notche margin between floating button and bottom appbar
         child: Row( //children inside bottom appbar
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            IconButton(icon: Icon(Icons.home, color: Colors.white, ), onPressed: () { _onItemTapped(0);},),
-            IconButton(icon: Icon(Icons.calendar_month, color: Colors.white,), onPressed: () {_onItemTapped(1);},),
+            InkWell(
+              onTap: () { _onItemTapped(0);},
+              child: const TabItemWithText("Home", Icons.home),
+            ),
+            InkWell(
+              onTap: () { _onItemTapped(0);},
+              child: const TabItemWithText("Calendar", Icons.calendar_month),
+            ),
             SizedBox(width: 60,),
-            IconButton(icon: Icon(Icons.access_time_outlined, color: Colors.white,), onPressed: () { _onItemTapped(2);},),
-            IconButton(icon: Icon(Icons.person, color: Colors.white,), onPressed: () { _onItemTapped(3);},),
+            InkWell(
+              onTap: () { _onItemTapped(0);},
+              child: const TabItemWithText("Focuse", Icons.access_time_outlined),
+            ),
+            InkWell(
+              onTap: () { _onItemTapped(0);},
+              child: const TabItemWithText("Profile", Icons.person),
+            ),
           ],
         ),
       ),
     );
   }
 }
+

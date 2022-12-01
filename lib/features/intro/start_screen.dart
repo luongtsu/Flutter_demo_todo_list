@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_login_homwork3/models/onboard_entry.dart';
 import 'package:flutter_login_homwork3/utils/constant.dart';
