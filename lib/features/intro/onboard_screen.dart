@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_login_homwork3/features/home/home_screen.dart';
 import 'package:flutter_login_homwork3/models/onboard_entry.dart';
 import 'package:flutter_login_homwork3/utils/constant.dart';
 
@@ -23,9 +24,22 @@ class _OnboardScreenState extends State<OnboardScreen> {
   }
 
   void showNext() {
-    setState(() {
-      _currentIndex = min(_currentIndex + 1, 2);
-    });
+    if (_currentIndex < 2) {
+      setState(() {
+        _currentIndex += 1;
+      });
+    } else {
+      showHome();
+    }
+
+  }
+
+  void showHome() {
+    Navigator.pushReplacement(context, MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return const HomeScreen();
+        }),
+    );
   }
 
   @override
@@ -33,55 +47,54 @@ class _OnboardScreenState extends State<OnboardScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 40,),
+            const SizedBox(height: 40,),
             Row(
               children: [
                 TextButton(
                   onPressed: () {
-                    // TODO
+                    showHome();
                   },
-                  child: Text("SKIP", style: TextStyle(color: Colors.grey),),
+                  child: const Text("SKIP", style: TextStyle(color: Colors.grey),),
                 ),
-                Spacer(),
+                const Spacer(),
               ],
             ),
             Expanded(
               flex: 1,
               child: Center(
-                
                 child: Padding(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: _entries[_currentIndex].displayImage,
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: SizedBox(
                 height: 3,
                 child: Row(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       width: 16,
                       color: _currentIndex == 0 ? Colors.white : Colors.white60,
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Container(
                       width: 16,
                       color: _currentIndex == 1 ? Colors.white : Colors.white60,
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Container(
                       width: 16,
                       color: _currentIndex == 2 ? Colors.white : Colors.white60,
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
               ),
@@ -91,14 +104,14 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(20),
-                      child:  Text(_entries[_currentIndex].title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.white),),
+                      padding: const EdgeInsets.all(20),
+                      child:  Text(_entries[_currentIndex].title, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.white),),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(60, 20, 60, 20),
-                      child:  Text(_entries[_currentIndex].description, style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.white70,), textAlign: TextAlign.center,),
+                      padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
+                      child:  Text(_entries[_currentIndex].description, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.white70,), textAlign: TextAlign.center,),
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
             ),
@@ -108,9 +121,9 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   onPressed: () {
                     showPrevious();
                   },
-                  child: Text("BACK", style: TextStyle(color: Colors.grey),),
+                  child: const Text("BACK", style: TextStyle(color: Colors.grey),),
                 ),
-                Spacer(),
+                const Spacer(),
                 TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: Constant.purple,
@@ -125,7 +138,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 40,),
+            const SizedBox(height: 40,),
           ],
         ),
       ),

@@ -2,7 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login_homwork3/models/profile.dart';
 import 'package:flutter_login_homwork3/ui_components/info_display_row.dart';
-import 'package:flutter_login_homwork3/update_info_screen.dart';
+
+import 'update_info_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen(this._userProfile, {Key? key}) : super(key: key);

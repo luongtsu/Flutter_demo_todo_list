@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_homwork3/sign_in_screen.dart';
-
-import 'features/home/home_screen.dart';
-import 'features/intro/intro_screen.dart';
-import 'features/intro/onboard_screen.dart';
-import 'features/intro/start_screen.dart';
+import '../intro/intro_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const IntroScreen(),
     );
   }
 }
