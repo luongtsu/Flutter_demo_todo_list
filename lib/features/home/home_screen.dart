@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_homwork3/models/onboard_entry.dart';
 import 'package:flutter_login_homwork3/ui_components/no_task.dart';
-import 'package:flutter_login_homwork3/ui_components/tabbar_item.dart';
-import 'package:flutter_login_homwork3/utils/constant.dart';
 import 'package:flutter_login_homwork3/gen/assets.gen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,14 +11,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.black,
         title: SizedBox(
           width: double.infinity,
-          child: Text('Index', textAlign: TextAlign.center,),
+          child: Text('Home', textAlign: TextAlign.center,),
         ),
         leading:Padding(
           padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
@@ -71,45 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         color: Colors.black,
         child: NoTask(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // TODO: smthing
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Constant.purple,//icon inside button
-      ),
-
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      //floating action button position to center
-
-      bottomNavigationBar: BottomAppBar( //bottom navigation bar on scaffold
-        color:Constant.barBackground,
-        shape: CircularNotchedRectangle(), //shape of notch
-        notchMargin: 0, //notche margin between floating button and bottom appbar
-        child: Row( //children inside bottom appbar
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            InkWell(
-              onTap: () { _onItemTapped(0);},
-              child: const TabItemWithText("Home", Icons.home),
-            ),
-            InkWell(
-              onTap: () { _onItemTapped(0);},
-              child: const TabItemWithText("Calendar", Icons.calendar_month),
-            ),
-            SizedBox(width: 60,),
-            InkWell(
-              onTap: () { _onItemTapped(0);},
-              child: const TabItemWithText("Focuse", Icons.access_time_outlined),
-            ),
-            InkWell(
-              onTap: () { _onItemTapped(0);},
-              child: const TabItemWithText("Profile", Icons.person),
-            ),
-          ],
-        ),
       ),
     );
   }

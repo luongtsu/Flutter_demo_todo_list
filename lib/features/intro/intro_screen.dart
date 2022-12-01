@@ -7,30 +7,36 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute<void>(
-            builder: (BuildContext context) {
-              return const OnboardScreen();
-            }),
-        );
-      },
-      child: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 100,
-                height: 100,
-                child: Assets.images.todoIcon.image(),
-              ),
-              const Text("UpTodo", style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600, color: Colors.white),),
-            ],
-          ) ,
+    return Material(
+      type: MaterialType.transparency,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute<void>(
+              builder: (BuildContext context) {
+                return const OnboardScreen();
+              }),
+          );
+        },
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Assets.images.todoIcon.image(),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(20),
+                  child:  Text("UpTodo", style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600, color: Colors.white),),
+                ),
+              ],
+            ) ,
+          ),
         ),
       ),
     );

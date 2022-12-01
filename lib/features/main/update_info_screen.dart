@@ -130,12 +130,12 @@ class _UpdateInfoScreenState extends State<UpdateInfoScreen> {
                   children: [
                     AvatarSelection(_userProfile.avatarImageName),
                     const SizedBox(height: 20),
-                    TextFormFieldWithTitle("Email", TextInputType.emailAddress, _tfUserNameController),
-                    PasswordTextFormFieldWithTitle("Password", TextInputType.visiblePassword, _tfPasswordController),
-                    TextFormFieldWithTitle("Gender", TextInputType.text, _tfGenderController),
-                    TextFormFieldWithTitle("Birthday", TextInputType.datetime, _tfBirthdayController),
-                    TextFormFieldWithTitle("Phone Number", TextInputType.phone, _tfPhoneNumberController),
-                    TextFormFieldWithTitle("Address", TextInputType.text, _tfAddressController),
+                    TextFormFieldWithTitle("Email", "Email", TextInputType.emailAddress, _tfUserNameController),
+                    PasswordTextFormFieldWithTitle("Password", "Password", TextInputType.visiblePassword, _tfPasswordController),
+                    TextFormFieldWithTitle("Gender", "Gender", TextInputType.text, _tfGenderController),
+                    TextFormFieldWithTitle("Birthday", "Birthday", TextInputType.datetime, _tfBirthdayController),
+                    TextFormFieldWithTitle("Phone Number", "Phone Number", TextInputType.phone, _tfPhoneNumberController),
+                    TextFormFieldWithTitle("Address", "Address", TextInputType.text, _tfAddressController),
                     Container(
                       height: 50,
                       alignment: Alignment.bottomRight,

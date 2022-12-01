@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_login_homwork3/features/home/home_screen.dart';
+import 'package:flutter_login_homwork3/features/intro/start_screen.dart';
+import 'package:flutter_login_homwork3/features/signin/sign_in_screen.dart';
 import 'package:flutter_login_homwork3/models/onboard_entry.dart';
 import 'package:flutter_login_homwork3/utils/constant.dart';
 
@@ -28,15 +30,22 @@ class _OnboardScreenState extends State<OnboardScreen> {
         _currentIndex += 1;
       });
     } else {
-      showHome();
+      showLogin();
     }
-
   }
 
   void showHome() {
     Navigator.pushReplacement(context, MaterialPageRoute<void>(
         builder: (BuildContext context) {
           return const HomeScreen();
+        }),
+    );
+  }
+
+  void showLogin() {
+    Navigator.pushReplacement(context, MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return const StartScreen();
         }),
     );
   }
@@ -116,19 +125,19 @@ class _OnboardScreenState extends State<OnboardScreen> {
             ),
             Row(
               children: [
+                _currentIndex > 0 ?
                 TextButton(
                   onPressed: () {
                     showPrevious();
                   },
                   child: const Text("BACK", style: TextStyle(color: Colors.grey),),
-                ),
+                ) : const Spacer(),
                 const Spacer(),
                 TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: Constant.purple,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    //textStyle: const TextStyle(fontSize: 16),
                   ),
                   onPressed: () {
                     showNext();

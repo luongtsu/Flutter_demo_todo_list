@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PasswordTextFormFieldWithTitle extends StatefulWidget {
-  const PasswordTextFormFieldWithTitle(this._title, this._inputType, this._tfController, {Key? key}) : super(key: key);
+  const PasswordTextFormFieldWithTitle(this._title, this._hintText, this._inputType, this._tfController, {Key? key}) : super(key: key);
 
   final String _title;
+  final String _hintText;
   final TextEditingController _tfController;
   final TextInputType _inputType;
 
@@ -14,6 +15,7 @@ class PasswordTextFormFieldWithTitle extends StatefulWidget {
 class _PasswordTextFormFieldWithTitleState extends State<PasswordTextFormFieldWithTitle> {
 
   late String _title;
+  late String _hintText;
   late TextEditingController _tfController;
   late TextInputType _inputType;
 
@@ -29,6 +31,7 @@ class _PasswordTextFormFieldWithTitleState extends State<PasswordTextFormFieldWi
   void initState() {
     super.initState();
     _title = widget._title;
+    _hintText = widget._hintText;
     _tfController = widget._tfController;
     _inputType = widget._inputType;
   }
@@ -41,7 +44,7 @@ class _PasswordTextFormFieldWithTitleState extends State<PasswordTextFormFieldWi
         children: <Widget>[
           Container(
             alignment: Alignment.centerLeft,
-            child: Text(_title + ":", style: TextStyle(fontSize: 16)),
+            child: Text(_title, style: TextStyle(fontSize: 16)),
           ),
           const SizedBox(height: 10),
           SizedBox(
@@ -52,7 +55,21 @@ class _PasswordTextFormFieldWithTitleState extends State<PasswordTextFormFieldWi
               obscureText: _obscured,
               decoration: InputDecoration(
                 border:  OutlineInputBorder(),
-                hintText: _title,
+                hintText: _hintText,
+                hintStyle: const TextStyle(color: Colors.white30),
+                fillColor: Colors.white60,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: const BorderSide(
+                    color: Colors.white,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: const BorderSide(
+                    color: Colors.white60,
+                  ),
+                ),
                 suffixIcon: GestureDetector(
                   onTap: _toggleObscured,
                   child: Icon(_obscured ? Icons.visibility_off : Icons.visibility),

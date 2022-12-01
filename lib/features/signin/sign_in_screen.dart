@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login_homwork3/models/profile.dart';
+import 'package:flutter_login_homwork3/ui_components/password_text_form_field_with_title.dart';
+import 'package:flutter_login_homwork3/ui_components/text_form_field_with_title.dart';
 import 'package:flutter_login_homwork3/utils/util.dart';
 
-import '../home/dashboard_screen.dart';
+import '../../utils/constant.dart';
+import '../main/dashboard_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -29,6 +32,13 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void initState() {
     super.initState();
+    _tfUserNameController.addListener(() {
+      validateInputData();
+    });
+
+    _tfPasswordController.addListener(() {
+      validateInputData();
+    });
   }
 
   @override
@@ -59,38 +69,14 @@ class _SignInScreenState extends State<SignInScreen> {
     }
   }
 
-  void didChangeEmail(String? value) {
-    setState(() {
-      String pattern =
-          r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-          r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-          r"{0,253}[a-zA-Z0-9])?)*$";
-      RegExp regex = RegExp(pattern);
-      if (value == null || value.isEmpty || !regex.hasMatch(value)) {
-        _signinEnabled = false;
-      } else {
-        validateInputData();
-      }
-    });
-  }
-
-
-  void didChangePassword(String? value) {
-    setState(() {
-      if (value == null || value.isEmpty) {
-        _signinEnabled = false;
-      } else {
-        validateInputData();
-      }
-    });
-  }
-
   void validateInputData() {
-      if (_tfUserNameController.text.isEmpty || _tfPasswordController.text.isEmpty || !Util.isEmailValid(_tfUserNameController.text)) {
+    setState(() {
+      if (_tfUserNameController.text.isEmpty || _tfPasswordController.text.isEmpty) {
         _signinEnabled = false;
       } else {
         _signinEnabled = true;
       }
+    });
   }
 
   @override
@@ -99,47 +85,24 @@ class _SignInScreenState extends State<SignInScreen> {
       primary: false,
       body: Container(
         padding: EdgeInsets.all(20),
-        color: Colors.white,
+        color: Colors.black,
         child: ListView(
           children: <Widget>[
-            const SizedBox(height: 40,),
-            const Text("Log in", style: TextStyle(fontSize: 32)),
-            const SizedBox(height: 20),
-            SizedBox(
-              height: 50,
-              child: TextFormField(
-                controller: _tfUserNameController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  border:  OutlineInputBorder(),
-                  hintText: "Email",
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back_ios, color: Colors.white,),
                 ),
-                onChanged: (val){
-                  didChangeEmail(val);
-                },
-              ),
+                Spacer(),
+              ],
             ),
             const SizedBox(height: 20),
-            SizedBox(
-              height: 50,
-              child: TextFormField(
-                controller: _tfPasswordController,
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: _obscured,
-                decoration: InputDecoration(
-                  border:  OutlineInputBorder(),
-                  hintText: "Password",
-                  suffixIcon: GestureDetector(
-                    onTap: _toggleObscured,
-                    child: Icon(_obscured ? Icons.visibility_off : Icons.visibility),
-                  ),
-                ),
-                onChanged: (val){
-                  didChangePassword(val);
-                },
-              ),
-            ),
-            const SizedBox(height: 20),
+            TextFormFieldWithTitle("Username", "Enter your Username", TextInputType.emailAddress, _tfUserNameController),
+            PasswordTextFormFieldWithTitle("Password", "Enter your Password", TextInputType.visiblePassword, _tfPasswordController),
+            const SizedBox(height: 50),
             SizedBox(
               height: 50,
               width: double.infinity,
@@ -147,7 +110,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 borderRadius: BorderRadius.circular(5),
                 child: TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: _signinEnabled ? Colors.black87 : Colors.grey,
+                      backgroundColor: _signinEnabled ? Constant.purple : Constant.purple.withAlpha(100),
                       textStyle: const TextStyle(fontSize: 16),
                     ),
                     onPressed: _signinEnabled ? onSignIn : null,

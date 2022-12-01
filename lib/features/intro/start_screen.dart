@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_homwork3/features/signin/sign_in_screen.dart';
 import 'package:flutter_login_homwork3/models/onboard_entry.dart';
 import 'package:flutter_login_homwork3/utils/constant.dart';
 
@@ -12,19 +13,20 @@ class StartScreen extends StatefulWidget {
 
 class _StartScreenState extends State<StartScreen> {
 
-  int _currentIndex = 0;
-  final List<OnboardEntry> _entries = OnboardEntry.defaultEntries;
-
-  void showPrevious() {
-    setState(() {
-      _currentIndex = max(_currentIndex - 1, 0);
-    });
+  void gotoRegisterScreen() {
+    Navigator.push(context, MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return SignInScreen();
+        }),
+    );
   }
 
-  void showNext() {
-    setState(() {
-      _currentIndex = min(_currentIndex + 1, 2);
-    });
+  void gotoLoginScreen() {
+    Navigator.pushReplacement(context, MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return const SignInScreen();
+        }),
+    );
   }
 
   @override
@@ -71,7 +73,7 @@ class _StartScreenState extends State<StartScreen> {
                         textStyle: const TextStyle(fontSize: 16),
                       ),
                       onPressed: () {
-                        showNext();
+                        gotoLoginScreen();
                       },
                       child: Text("LOG IN", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),)
                   ),
@@ -94,7 +96,7 @@ class _StartScreenState extends State<StartScreen> {
                         textStyle: const TextStyle(fontSize: 16),
                       ),
                       onPressed: () {
-                        showNext();
+                        gotoRegisterScreen();
                       },
                       child: Text("CREATE ACCOUNT", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),)
                   ),
