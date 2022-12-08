@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_homwork3/features/main/main.dart';
 import 'package:flutter_login_homwork3/features/signin/sign_in_screen.dart';
 import 'package:flutter_login_homwork3/models/onboard_entry.dart';
 import 'package:flutter_login_homwork3/utils/constant.dart';
@@ -24,7 +25,7 @@ class _StartScreenState extends State<StartScreen> {
   void gotoLoginScreen() {
     Navigator.pushReplacement(context, MaterialPageRoute<void>(
         builder: (BuildContext context) {
-          return const SignInScreen();
+          return const MyApp();
         }),
     );
   }
