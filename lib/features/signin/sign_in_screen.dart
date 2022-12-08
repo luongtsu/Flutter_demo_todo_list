@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login_homwork3/models/profile.dart';
+import 'package:flutter_login_homwork3/services/auth_service.dart';
 import 'package:flutter_login_homwork3/ui_components/password_text_form_field_with_title.dart';
 import 'package:flutter_login_homwork3/ui_components/text_form_field_with_title.dart';
 import 'package:flutter_login_homwork3/utils/util.dart';
+import 'package:flutter_login_homwork3/gen/assets.gen.dart';
 
 import '../../utils/constant.dart';
 import '../main/dashboard_screen.dart';
@@ -118,6 +120,70 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
             ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 40, 0, 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  Expanded(child: Divider(height: 1, color: Colors.white60)),
+                  Text("  or  "),
+                  Expanded(child: Divider(height: 1, color: Colors.white60)),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+              child: SizedBox(
+                height: 50,
+                width: double.infinity,
+                child: Container(
+                  padding: EdgeInsets.all(0.5),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Constant.purple),
+                  ),
+                  child: TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        textStyle: const TextStyle(fontSize: 16),
+                      ),
+                      onPressed: () {
+                        AuthService().signInWithGoogle();
+                      },
+                      child: Row(
+                        children: [
+                          Spacer(),
+                          SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Assets.images.googleIcon.image(),
+                          ),
+                          SizedBox(width: 8,),
+                          Text("CREATE ACCOUNT", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),),
+                          Spacer(),
+                        ],
+                      ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 200,),
+            SizedBox(
+              height: 50,
+              child: Row(
+                children: [
+                  Spacer(),
+                  const Text("Don't have an account?", style: TextStyle(color: Colors.white60),),
+                  GestureDetector(
+                    onTap: () {
+                      // TODO: register
+                    },
+                    child: Text(" Register", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
+                  ),
+                  Spacer(),
+                ],
+              ),
+            )
           ],
         ),
       ),

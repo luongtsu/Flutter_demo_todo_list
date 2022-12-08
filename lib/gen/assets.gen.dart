@@ -20,6 +20,10 @@ class $AssetsImagesGen {
   AssetGenImage get dailyRoutine =>
       const AssetGenImage('assets/images/daily_routine.png');
 
+  /// File path: assets/images/google_icon.png
+  AssetGenImage get googleIcon =>
+      const AssetGenImage('assets/images/google_icon.png');
+
   /// File path: assets/images/manage_task.png
   AssetGenImage get manageTask =>
       const AssetGenImage('assets/images/manage_task.png');
@@ -44,6 +48,7 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
         checklist,
         dailyRoutine,
+        googleIcon,
         manageTask,
         missfortune,
         organizeTask,
